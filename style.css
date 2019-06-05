@@ -1,0 +1,87 @@
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+.full-height {
+	height: 100%;
+	background: #482C89;
+	color: #fff;
+	padding: 40px 0;
+}
+.container-detail{
+	padding: 0;
+}
+.container-detail h3{
+	font-weight: 700;
+	margin-bottom: 30px;
+}
+.container-detail p{
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+.container-detail input{
+	border: none;
+    background: transparent;
+	width: 100%;
+	outline: none;
+	margin-bottom: 10px;
+}
+.logo-info img{
+	max-width: 200px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: darkgrey;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: darkgrey;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: darkgrey;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: darkgrey;
+}
+
+.container-detail button{
+	width: 100%;
+    background: #8560A8;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+	margin: 30px 0 50px 0;
+}
+.apps-craft-download-store-btn-group{
+	display: flex;
+    justify-content: space-between;
+}
+.apps-craft-btn.play-store-btn{
+    display: inline-block;
+    width: 180px;
+    height: 70px;
+    border-radius: 3px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 70px;
+}
+.apps-craft-btn.app-store-btn{
+	background: #000;
+	display: inline-block;
+    width: 180px;
+    height: 70px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 70px;
+}
+
+/***/
+.wallet-balance{
+	background: #352667;
+    border-radius: 10px;
+    padding: 15px;
+    text-transform: uppercase;
+	margin-bottom: 20px;
+}
+.wallet-balance p{
+	margin-bottom:0;
+}

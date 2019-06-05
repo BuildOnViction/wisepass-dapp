@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href=' http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="full-height" id="partCheckEmail">
+	<div class="container">
+		<div class="col-md-4 col-md-offset-4 container-detail">
+		<div class="logo-info text-center">
+			<img src="./img/logo.png" alt="icon">
+		</div>
+		<h3>Start using your TOMO right now</h3>
+		<p>You can use your TOMO to top up your WisePass account with 1 PASS worth 35$US</p>
+		<p>Provide your WisePass account email in order to top up your account.</p>
+		<div class="form-send-mail">
+			<div id="form-mail">
+				<input id='email' class="email-business" placeholder="Type your email here...">
+				<input hidden id='transaction' class="email-business" value="0xf06655208b8e67526040b542eb3436749ab4bf00afd42a92884ddf45ccb7a143">
+				<input hidden id='wallet' class="wallet-business" value="">
+				<input hidden id='topupValue' class="topup-business" value="">
+				<h4 id='result'></h4>
+			</div>
+			<button type="submit" id='btnSubmit' class="submit-validate">SUBMIT</button>
+			
+		</div>
+					
+		
+		<p>Not a member yet? Download our app and register an account now!</p>
+		
+		<div class="apps-craft-download-store-btn-group">
+            <a href="https://play.google.com/store/apps/details?id=com.vice_hotel" class="apps-craft-btn play-store-btn">
+				<img src="./img/google-play-logo.png" alt="icon">
+            </a>
+            <a href="https://itunes.apple.com/us/app/vice/id940084599?mt=8" class="apps-craft-btn app-store-btn">
+                <img src="./img/app-store-logo.png" alt="icon">
+            </a>
+        </div>
+		</div>
+
+	</div>
+</div>
+<div class="full-height" id="partTopUp" display="none">
+	<div class="container">
+		<div class="col-md-4 col-md-offset-4 container-detail">
+		<div class="logo-info text-center">
+			<img src="./img/logo.png" alt="icon">
+		</div>
+		<div class="text-center">
+		<h3>Your account is Verified</h3>
+		<div class="wallet-balance">
+			<p>your balance</p>
+			<span>123,456 TOMO</span>
+		</div>
+		<div class="wallet-balance">
+			<p>current price for 1 pass</p>
+			<span>57 TOMO</span>
+		</div>
+		<h4 id='resultTopUp'></h4>
+		</div>
+		
+		<button type="submit" id="btnTopUp">TOP UP</button>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="full-height" id="partSucceed" display="none">
+	<div class="container">
+		<div class="col-md-4 col-md-offset-4 container-detail">
+		<div class="logo-info text-center">
+			<img src="./img/logo.png" alt="icon">
+		</div>
+		<div class="text-center">
+		<h3>Success! Please check the reward section on WisePass App</h3>
+		</div>
+
+		<p>Not a member yet? Download our app and register an account now!</p>
+		
+		<div class="apps-craft-download-store-btn-group">
+            <a href="https://play.google.com/store/apps/details?id=com.vice_hotel" class="apps-craft-btn play-store-btn">
+				<img src="./img/google-play-logo.png" alt="icon">
+            </a>
+            <a href="https://itunes.apple.com/us/app/vice/id940084599?mt=8" class="apps-craft-btn app-store-btn">
+                <img src="./img/app-store-logo.png" alt="icon">
+            </a>
+        </div>
+		</div>
+		
+	</div>
+</div>
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="./bignumber.min.js"></script>
+	<script src="./web3.min.js"></script>
+	<script src="./script.js"></script>
+	
+</body>
+</html>
