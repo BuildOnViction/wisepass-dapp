@@ -121,7 +121,7 @@ $("#partSucceed").css("display", "none");
 	
 	function signUpEmail(email, transaction, hash) {
 		var xhr = new XMLHttpRequest();
-		var url = "http://apiservice.wisepass.co/tomo/service/topup";
+		var url = "https://apiwisepass.tomochain.com/tomo/service/topup";
 		xhr.open("POST", url, true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {
