@@ -24,7 +24,6 @@ $("#partSucceed").css("display", "none");
 						$("#transaction").val(item.data.transaction);
 						$("#wallet").val(item.data.wallet);
 						$("#topupValue").val(item.data.wallets[0].value);
-                        console.log(item.data.wallets[0].value);
 
 						$result.css("color", "green");
 						$("#partCheckEmail").css("display", "none");
@@ -73,14 +72,14 @@ $("#partSucceed").css("display", "none");
 		var email = $("#email").val();
 		var transaction = $("#transaction").val();
 		var topupValue = $("#topupValue").val();
+		var wpWallet= $("#wpWallet").val();
         topupValue = BigNumber(topupValue).multipliedBy(1e18).toString(10);
 
         web3.eth.sendTransaction({
             from: web3.eth.defaultAccount,
-            to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
-            value: topupValue
+            to: '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA',
+            value: wpWallet
         }, function (error, hash) {
-            console.log(error, hash)
             if (error) {
                 $result.text(error);
                 $result.css("color", "red");
