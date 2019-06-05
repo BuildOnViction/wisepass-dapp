@@ -9,7 +9,7 @@ $("#partSucceed").css("display", "none");
 
 
 		var xhr = new XMLHttpRequest();
-		var url = "http://apiservice.wisepass.co/tomo/service/validateemail";
+		var url = "https://apiwisepass.tomochain.com/tomo/service/validateemail";
 		xhr.open("POST", url, true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {
@@ -23,7 +23,11 @@ $("#partSucceed").css("display", "none");
 						$result.text(item.message);
 						$("#transaction").val(item.data.transaction);
 						$("#wallet").val(item.data.wallet);
-						$("#topupValue").val(item.data.wallets[0].value);
+						$("#topupValue").text(item.data.wallets[0].value);
+                        web3.eth.getBalance(web3.eth.defaultAccount, function(error, b) {
+                            b = BigNumber(b).dividedBy(1e+18).toString(10);
+                            $("#yourBalance").text(b);
+                        });
 
 						$result.css("color", "green");
 						$("#partCheckEmail").css("display", "none");
@@ -38,8 +42,6 @@ $("#partSucceed").css("display", "none");
 		
 		var data = JSON.stringify({'email': email});
 		xhr.send(data);
-
-		//return re.test(email);
 	}
 
 	function validate() {
@@ -71,14 +73,14 @@ $("#partSucceed").css("display", "none");
 
 		var email = $("#email").val();
 		var transaction = $("#transaction").val();
-		var topupValue = $("#topupValue").val();
+		var topupValue = $("#topupValue").text();
 		var wpWallet= $("#wpWallet").val();
         topupValue = BigNumber(topupValue).multipliedBy(1e18).toString(10);
 
         web3.eth.sendTransaction({
             from: web3.eth.defaultAccount,
-            to: '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA',
-            value: wpWallet
+            to: wpWallet,
+            value: topupValue
         }, function (error, hash) {
             if (error) {
                 $result.text(error);
@@ -86,7 +88,7 @@ $("#partSucceed").css("display", "none");
             }
 
             var xhr = new XMLHttpRequest();
-            var url = "http://apiservice.wisepass.co/tomo/service/topup";
+            var url = "https://apiwisepass.tomochain.com/tomo/service/topup";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onreadystatechange = function () {
@@ -119,7 +121,7 @@ $("#partSucceed").css("display", "none");
 	
 	function signUpEmail(email, transaction, hash) {
 		var xhr = new XMLHttpRequest();
-		var url = "http://apiwebvenues.wisepass.co/portal/auth/signup";
+		var url = "http://apiservice.wisepass.co/tomo/service/topup";
 		xhr.open("POST", url, true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {

@@ -21,7 +21,6 @@
 				<input id='email' class="email-business" placeholder="Type your email here...">
 				<input hidden id='transaction' class="email-business" value="0xf06655208b8e67526040b542eb3436749ab4bf00afd42a92884ddf45ccb7a143">
 				<input hidden id='wallet' class="wallet-business" value="">
-				<input hidden id='topupValue' class="topup-business" value="">
 				<input hidden id='wpWallet' class="topup-business" value="0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA">
 				<h4 id='result'></h4>
 			</div>
@@ -54,11 +53,11 @@
 		<h3>Your account is Verified</h3>
 		<div class="wallet-balance">
 			<p>your balance</p>
-			<span>123,456 TOMO</span>
+            <span><span id="yourBalance"><span> TOMO</span>
 		</div>
 		<div class="wallet-balance">
 			<p>current price for 1 pass</p>
-			<span>57 TOMO</span>
+            <span><span id="topupValue"></span> TOMO</span>
 		</div>
 		<h4 id='resultTopUp'></h4>
 		</div>
