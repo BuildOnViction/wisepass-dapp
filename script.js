@@ -5,6 +5,8 @@ $("#partSucceed").css("display", "none");
 
 
 function validateEmail(email) {
+    $('#btnSubmit').text('LOADING...');
+    $('#btnSubmit').disabled = true;
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
@@ -38,7 +40,9 @@ function validateEmail(email) {
                 }
             }
         }
-    };
+        $('#btnSubmit').text('SUBMIT');
+        $('#btnSubmit').disabled = false;
+    }
     
     var data = JSON.stringify({'email': email});
     xhr.send(data);
@@ -59,6 +63,9 @@ $("#btnSubmit").on("click", validate);
 $("#btnTopUp").on("click", topUp);
 
 function topUp() {
+
+    $('#btnTopUp').text('LOADING...');
+    $('#btnTopUp').disabled = true;
 
     var email = $("#email").val();
     var transaction = $("#transaction").val();
@@ -100,6 +107,9 @@ function topUp() {
                     }
                 }
             }
+
+            $('#btnTopUp').text('SUBMIT');
+            $('#btnTopUp').disabled = false;
         };
         
         var data = JSON.stringify({'transaction' : transaction, 'hash' : hash});
