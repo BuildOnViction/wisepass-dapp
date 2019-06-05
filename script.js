@@ -79,41 +79,51 @@ function topUp() {
         value: topupValue
     }, function (error, hash) {
         if (error) {
-            $result.text(error);
-            $result.css("color", "red");
-        }
-
-        var xhr = new XMLHttpRequest();
-        var url = "https://apiwisepass.tomochain.com/tomo/service/topup";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function () {
-            if (xhr.response)
-            {
-                var item = JSON.parse(xhr.response);
-                if (item)
-                {
-                    var $result = $("#resultTopUp");
-                    if (item.statusCode === 200) {
-                        $result.text(item.message);
-                        $result.css("color", "green");
-
-                        $("#partCheckEmail").css("display", "none");
-                        $("#partTopUp").css("display", "none");
-                        $("#partSucceed").css("display", "block");
-                    } else {
-                        $result.text(item.message);
-                        $result.css("color", "red");
-                    }
-                }
-            }
-
             $('#btnTopUp').text('SUBMIT');
             $('#btnTopUp').disabled = false;
-        };
-        
-        var data = JSON.stringify({'transaction' : transaction, 'hash' : hash});
-        xhr.send(data);
+            $result.text(error);
+            $result.css("color", "red");
+            return;
+        }
+        var intv = setInterval(function(){
+            web3.eth.getTransactionReceipt(hash, function(error, ret) {
+                if (ret && ! error) {
+                    clearInterval(intv);
+                    var xhr = new XMLHttpRequest();
+                    var url = "https://apiwisepass.tomochain.com/tomo/service/topup";
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.response)
+                        {
+                            var item = JSON.parse(xhr.response);
+                            if (item)
+                            {
+                                var $result = $("#resultTopUp");
+                                if (item.statusCode === 200) {
+                                    $result.text(item.message);
+                                    $result.css("color", "green");
+
+                                    $("#partCheckEmail").css("display", "none");
+                                    $("#partTopUp").css("display", "none");
+                                    $("#partSucceed").css("display", "block");
+                                } else {
+                                    $result.text(item.message);
+                                    $result.css("color", "red");
+                                }
+                            }
+                        }
+
+                        $('#btnTopUp').text('SUBMIT');
+                        $('#btnTopUp').disabled = false;
+                    };
+                    
+                    var data = JSON.stringify({'transaction' : transaction, 'hash' : hash});
+                    xhr.send(data);
+                }
+            });
+        }, 3000);
+
     });
     
 }
