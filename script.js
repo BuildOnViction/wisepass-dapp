@@ -3,6 +3,9 @@ $("#partCheckEmail").css("display", "block");
 $("#partTopUp").css("display", "none");
 $("#partSucceed").css("display", "none");
 
+$( document ).ready(function() {
+    $("#email").val(localStorage.getItem("userEmail"));
+});
 
 function validateEmail(email) {
     $('#btnSubmit').text('LOADING...');
@@ -23,6 +26,7 @@ function validateEmail(email) {
                 var $result = $("#result");
                 if (item.statusCode === 200) {
                     $result.text(item.message);
+                    localStorage.setItem("userEmail", email);
                     $("#transaction").val(item.data.transaction);
                     $("#wallet").val(item.data.wallet);
                     $("#topupValue").text(item.data.wallets[0].value);
