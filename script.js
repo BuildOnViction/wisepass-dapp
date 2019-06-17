@@ -80,6 +80,8 @@ function topUp() {
     web3.eth.sendTransaction({
         from: web3.eth.defaultAccount,
         to: wpWallet,
+        gasLimit: 21000,
+        gasPrice: 300000000,
         value: topupValue
     }, function (error, hash) {
         if (error) {
