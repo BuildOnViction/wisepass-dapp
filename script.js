@@ -5,6 +5,7 @@ $("#partSucceed").css("display", "none");
 
 $( document ).ready(function() {
     $("#email").val(localStorage.getItem("userEmail"));
+    window.ethereum.enable();
 });
 
 function validateEmail(email) {
