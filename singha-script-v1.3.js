@@ -13,7 +13,7 @@ function buySuccess() {
       clearInterval(videoInterval);
     }
     catch (ex) {
-
+      alert(ex.toString())
     }
   }, 10);
 }
