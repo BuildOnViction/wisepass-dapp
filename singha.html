@@ -6,18 +6,6 @@
   <title>Wisepass | Singha</title>
   <link rel="icon" href="./img/wisepass-tomo_dapp.jpg">
   <script>
-    function parseQuery(queryString) {
-      var query = {};
-      var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
-      for (var i = 0; i < pairs.length; i++) {
-          var pair = pairs[i].split('=');
-          query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
-      }
-      return query;
-    }
-
-    window.APP_PARAMS = parseQuery(location.search)
-
     function buy() {
       buyABeer();
     }
@@ -172,6 +160,6 @@
 
   <script src="./bignumber.min.js"></script>
   <script src="./web3.min.js"></script>
-  <script src="./singha-script-v1.6.js"></script>
+  <script src="./singha-script-v1.7.js"></script>
 </body>
 </html>

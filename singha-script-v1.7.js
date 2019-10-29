@@ -11,6 +11,8 @@ function parseQuery(queryString) {
 }
 
 var APP_PARAMS = parseQuery(location.search)
+APP_PARAMS = atob(APP_PARAMS.v);
+APP_PARAMS = JSON.parse(APP_PARAMS);
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
@@ -41,7 +43,6 @@ function buyABeer() {
   var web3 = new Web3(window.web3.currentProvider);
 
   window.web3.eth.getAccounts(function (err, accounts) {
-    console.log(accounts[0])
     web3.eth.sendTransaction({
       from: accounts[0],
       to: '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA',
