@@ -1,5 +1,3 @@
-window.ethereum.enable();
-
 function parseQuery(queryString) {
   var query = {};
   var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
@@ -19,9 +17,8 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-
+document.getElementById('version').innerHTML = 'WisePass Dapp v1.9 © 2019 TomoChain.'
 var isBuying = false;
-var venueId = '375-199-527'
 
 function buySuccess() {
   document.getElementById('buySession').style.display = 'none';
