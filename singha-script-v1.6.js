@@ -1,5 +1,20 @@
 window.ethereum.enable();
 
+function parseQuery(queryString) {
+  var query = {};
+  var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+  for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i].split('=');
+      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+  }
+  return query;
+}
+
+var APP_PARAMS = parseQuery(location.search)
+
+var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
+document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
+
 var isBuying = false;
 var venueId = '375-199-527'
 
@@ -32,7 +47,7 @@ function buyABeer() {
       to: '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA',
       gasLimit: 100000,
       gasPrice: 300000000,
-      value: BigNumber('0.001').multipliedBy(1e18).toString(10)
+      value: BigNumber(tomoAmount).multipliedBy(1e18).toString(10)
     }, function (error, hash) {
       if (error) {
         var errMsg = (error.message || error.toString() || '').toLowerCase();
@@ -58,26 +73,26 @@ function buyABeer() {
             document.getElementById('buyButton').innerHTML = 'BUY A BEER';
             buySuccess();
 
-            // var xhr = new XMLHttpRequest();
-            // var url = "http://apimobile.wisepass.co/v4/tomo/txhash/check";
-            // xhr.open("POST", url, true);
-            // xhr.setRequestHeader("Content-Type", "application/json");
-            // xhr.setRequestHeader("api_key", "****");
-            // xhr.onreadystatechange = function () {
-            //   if (xhr.response) {
-            //     isBuying = false;
-            //     document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-            //     buySuccess();
-            //     var data = JSON.parse(xhr.response);
-            //     if (data) {
-            //     }
-            //   }
-            // };
-            // var data = JSON.stringify({
-            //   'venueId': venueId,
-            //   'txhash': hash
-            // });
-            // xhr.send(data);
+            var xhr = new XMLHttpRequest();
+            var url = "http://apimobile.wisepass.co/v4/tomo/txhash/check";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("api_key", APP_PARAMS.appID);
+            xhr.onreadystatechange = function () {
+              if (xhr.response) {
+                isBuying = false;
+                document.getElementById('buyButton').innerHTML = 'BUY A BEER';
+                buySuccess();
+                var data = JSON.parse(xhr.response);
+                if (data) {
+                }
+              }
+            };
+            var data = JSON.stringify({
+              'venueId': APP_PARAMS.venueId,
+              'txhash': hash
+            });
+            xhr.send(data);
           }
         });
       }, 3000);
