@@ -10,9 +10,12 @@ function parseQuery(queryString) {
   return query;
 }
 
-var APP_PARAMS = parseQuery(location.search)
-APP_PARAMS = atob(APP_PARAMS.v);
-APP_PARAMS = JSON.parse(APP_PARAMS);
+var query = parseQuery(location.search)
+APP_PARAMS = {
+  venueId: query.v.split('@')[0],
+  rate: query.v.split('@')[1],
+  appID: query.v.split('@')[2],
+}
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
