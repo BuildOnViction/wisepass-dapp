@@ -1,11 +1,7 @@
-var publictransaction = '';
 window.ethereum.enable();
+
 var isBuying = false;
-var recipientAddress = '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA';
 var venueId = '375-199-527'
-console.log(web3.currentProvider)
-
-
 
 function buySuccess() {
   document.getElementById('buySession').style.display = 'none';
@@ -30,9 +26,10 @@ function buyABeer() {
   var web3 = new Web3(window.web3.currentProvider);
 
   window.web3.eth.getAccounts(function (err, accounts) {
+    console.log(accounts[0])
     web3.eth.sendTransaction({
       from: accounts[0],
-      to: recipientAddress,
+      to: '0x68C68b7aA02C08B6f489Fba22219eB57Ece362fA',
       gasLimit: 100000,
       gasPrice: 300000000,
       value: BigNumber('0.001').multipliedBy(1e18).toString(10)
