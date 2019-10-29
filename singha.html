@@ -12,15 +12,16 @@
     function buyMore() {
       document.getElementById('buySession').style.display = 'block';
       document.getElementById('buySuccessSesstion').style.top = '100vh';
-      // var videoInterval2 = setInterval(() => {
-      //   try {
-      //     document.getElementsByTagName('video')[0].currentTime = 0;
-      //     document.getElementsByTagName('video')[0].pause();
-      //     clearInterval(videoInterval2);
-      //   }
-      //   catch (ex) {
-      //   }
-      // }, 10);
+      var videoInterval2 = setInterval(() => {
+        try {
+          // document.getElementsByTagName('video')[0].currentTime = 0;
+          // document.getElementsByTagName('video')[0].pause();
+          document.getElementById('imgSuccess').src = '';
+          clearInterval(videoInterval2);
+        }
+        catch (ex) {
+        }
+      }, 10);
     }
   </script>
   <style>
@@ -134,7 +135,7 @@
       <source src="./img/singha-min.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
     </video> -->
-    <img src="./img/singha.gif" class="img-success" />
+    <img id="imgSuccess" src="./img/singha.gif" class="img-success" />
     <div class="ptext">
       <div class="success">SUCCESS</div>
       <div class="successDes">
@@ -148,6 +149,6 @@
 
   <script src="./bignumber.min.js"></script>
   <script src="./web3.min.js"></script>
-  <script src="./singha-script-v1.4.js"></script>
+  <script src="./singha-script-v1.5.js"></script>
 </body>
 </html>

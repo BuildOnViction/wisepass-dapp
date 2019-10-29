@@ -6,16 +6,16 @@ var venueId = '375-199-527'
 function buySuccess() {
   document.getElementById('buySession').style.display = 'none';
   document.getElementById('buySuccessSesstion').style.top = '0';
-  // var videoInterval = setInterval(() => {
-  //   try {
-  //     document.getElementsByTagName('video')[0].currentTime = 0
-  //     document.getElementsByTagName('video')[0].play()
-  //     clearInterval(videoInterval);
-  //   }
-  //   catch (ex) {
-  //     // alert(ex.toString())
-  //   }
-  // }, 10);
+  var videoInterval = setInterval(() => {
+    try {
+      // document.getElementsByTagName('video')[0].currentTime = 0
+      // document.getElementsByTagName('video')[0].play()
+      document.getElementById('imgSuccess').src = './img/singha.gif';
+      clearInterval(videoInterval);
+    }
+    catch (ex) {
+    }
+  }, 10);
 }
 
 function buyABeer() {
