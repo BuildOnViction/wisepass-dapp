@@ -26,7 +26,6 @@ function buyABeer() {
   if (isBuying) return;
   isBuying = true;
   document.getElementById('buyButton').innerHTML = 'buying...';
-  topupValue = BigNumber('0.001').multipliedBy(1e18).toString(10);
 
   var web3 = new Web3(window.web3.currentProvider);
   if (window.web3.currentProvider.networkVersion != '88') {
@@ -37,9 +36,9 @@ function buyABeer() {
     web3.eth.sendTransaction({
       from: accounts[0],
       to: recipientAddress,
-      gasLimit: 21000,
+      gasLimit: 100000,
       gasPrice: 300000000,
-      value: topupValue
+      value: BigNumber('0.001').multipliedBy(1e18).toString(10)
     }, function (error, hash) {
       if (error) {
         var errMsg = (error.message || error.toString() || '').toLowerCase();
