@@ -28,9 +28,6 @@ function buyABeer() {
   document.getElementById('buyButton').innerHTML = 'buying...';
 
   var web3 = new Web3(window.web3.currentProvider);
-  if (window.web3.currentProvider.networkVersion != '88') {
-    alert('Uknown network, change network to TomoChain, please');
-  }
 
   window.web3.eth.getAccounts(function (err, accounts) {
     web3.eth.sendTransaction({
