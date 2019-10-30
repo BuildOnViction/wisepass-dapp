@@ -1,3 +1,5 @@
+window.ethereum.enable();
+
 function parseQuery(queryString) {
   var query = {};
   var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
@@ -17,17 +19,17 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-document.getElementById('version').innerHTML = 'WisePass Dapp v1.9 © 2019 TomoChain.'
+document.getElementById('version').innerHTML = 'WisePass Dapp v0.1 © 2019 TomoChain.'
 var isBuying = false;
 
 function buySuccess() {
   document.getElementById('buySession').style.display = 'none';
   document.getElementById('buySuccessSesstion').style.top = '0';
+  document.getElementById('imgSuccess').src = './img/singha.gif';
   var videoInterval = setInterval(() => {
     try {
       // document.getElementsByTagName('video')[0].currentTime = 0
       // document.getElementsByTagName('video')[0].play()
-      document.getElementById('imgSuccess').src = './img/singha.gif';
       clearInterval(videoInterval);
     }
     catch (ex) {
@@ -72,10 +74,9 @@ function buyABeer() {
 
             isBuying = false;
             document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-            buySuccess();
 
             var xhr = new XMLHttpRequest();
-            var url = "http://apimobile.wisepass.co/v4/tomo/txhash/check";
+            var url = "https://apimobile.wisepass.co/v4/tomo/txhash/check";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("api_key", APP_PARAMS.appID);
@@ -83,9 +84,12 @@ function buyABeer() {
               if (xhr.response) {
                 isBuying = false;
                 document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-                buySuccess();
                 var data = JSON.parse(xhr.response);
-                if (data) {
+                if (data.statusCode != 200) {
+                  alert('Error: ' + data.message)
+                }
+                else {
+                  buySuccess();
                 }
               }
             };

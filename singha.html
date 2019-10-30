@@ -12,11 +12,11 @@
     function buyMore() {
       document.getElementById('buySession').style.display = 'block';
       document.getElementById('buySuccessSesstion').style.top = '100vh';
+      document.getElementById('imgSuccess').src = '';
       var videoInterval2 = setInterval(() => {
         try {
           // document.getElementsByTagName('video')[0].currentTime = 0;
           // document.getElementsByTagName('video')[0].pause();
-          document.getElementById('imgSuccess').src = '';
           clearInterval(videoInterval2);
         }
         catch (ex) {
@@ -133,7 +133,7 @@
   <div id="buySession">
     <img src="./img/logo-min.png" class="logo">
     <div>
-      <img src="./img/singha-min.png" style="height: 35vh;" onclick="buySuccess()" />
+      <img src="./img/singha-min.png" style="height: 35vh;"/>
       <div class="ptext">Use your TOMO and enjoy a beer with WisePass, it costs you only <b>$1</b></div>
       <div id="rate">loading...</div>
     </div>
@@ -161,6 +161,6 @@
 
   <script src="./bignumber.min.js"></script>
   <script src="./web3.min.js"></script>
-  <script src="./singha-script-v1.9.js"></script>
+  <script src="./singha-script-v0.1.js"></script>
 </body>
 </html>
