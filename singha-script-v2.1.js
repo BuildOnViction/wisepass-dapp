@@ -17,7 +17,7 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-document.getElementById('version').innerHTML = 'WisePass Dapp v2.0 © 2019 TomoChain.'
+document.getElementById('version').innerHTML = 'WisePass Dapp v2.1 © 2019 TomoChain.'
 var isBuying = false;
 
 function buySuccess() {
@@ -37,7 +37,7 @@ function buySuccess() {
 function buyABeer() {
   if (isBuying) return;
   isBuying = true;
-  document.getElementById('buyButton').innerHTML = 'buying...';
+  document.getElementById('buyButton').innerHTML = 'buying <span>.</span><span>.</span><span>.</span>';
 
   var web3 = new Web3(window.web3.currentProvider);
 
@@ -62,15 +62,13 @@ function buyABeer() {
 
         return;
       }
-      document.getElementById('buyButton').innerHTML = 'confirming...';
+      document.getElementById('buyButton').innerHTML = 'confirming <span>.</span><span>.</span><span>.</span>';
+
 
       var intv = setInterval(function () {
         web3.eth.getTransactionReceipt(hash, function (error, ret) {
           if (ret && !error) {
             clearInterval(intv);
-
-            isBuying = false;
-            document.getElementById('buyButton').innerHTML = 'BUY A BEER';
 
             var xhr = new XMLHttpRequest();
             var url = "https://apimobile.wisepass.co/v4/tomo/txhash/check";
@@ -79,6 +77,7 @@ function buyABeer() {
             xhr.setRequestHeader("api_key", APP_PARAMS.appID);
             xhr.onreadystatechange = function () {
               if (xhr.response) {
+                var data = JSON.parse(xhr.response);
                 if (data.statusCode != 200) {
                   alert('Error: ' + data.message)
                 }
@@ -88,7 +87,6 @@ function buyABeer() {
 
                 isBuying = false;
                 document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-                var data = JSON.parse(xhr.response);
               }
             };
             var data = JSON.stringify({
