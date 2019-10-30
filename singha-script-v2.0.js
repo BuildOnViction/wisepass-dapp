@@ -17,11 +17,10 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-document.getElementById('version').innerHTML = 'WisePass Dapp v0.2 © 2019 TomoChain.'
+document.getElementById('version').innerHTML = 'WisePass Dapp v2.0 © 2019 TomoChain.'
 var isBuying = false;
 
 function buySuccess() {
-  document.getElementById('buySession').style.display = 'none';
   document.getElementById('buySuccessSesstion').style.top = '0';
   document.getElementById('imgSuccess').src = './img/singha.gif';
   var videoInterval = setInterval(() => {
@@ -80,15 +79,16 @@ function buyABeer() {
             xhr.setRequestHeader("api_key", APP_PARAMS.appID);
             xhr.onreadystatechange = function () {
               if (xhr.response) {
-                isBuying = false;
-                document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-                var data = JSON.parse(xhr.response);
                 if (data.statusCode != 200) {
                   alert('Error: ' + data.message)
                 }
                 else {
                   buySuccess();
                 }
+
+                isBuying = false;
+                document.getElementById('buyButton').innerHTML = 'BUY A BEER';
+                var data = JSON.parse(xhr.response);
               }
             };
             var data = JSON.stringify({
