@@ -17,7 +17,7 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-document.getElementById('version').innerHTML = 'WisePass Dapp v2.3 © 2019 TomoChain.'
+document.getElementById('version').innerHTML = 'WisePass Dapp v2.4 © 2019 TomoChain.'
 var isBuying = false;
 
 function buySuccess() {
@@ -69,6 +69,8 @@ function buyABeer() {
         web3.eth.getTransactionReceipt(hash, function (error, ret) {
           if (ret && !error) {
             clearInterval(intv);
+            isBuying = false;
+            document.getElementById('buyButton').innerHTML = 'BUY A BEER';
             buySuccess();
 
             // var xhr = new XMLHttpRequest();
