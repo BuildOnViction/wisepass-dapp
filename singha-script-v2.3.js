@@ -17,7 +17,7 @@ APP_PARAMS = {
 
 var tomoAmount = Math.round(1 / parseFloat(APP_PARAMS.rate) * 1000 * 1.05) / 1000
 document.getElementById('rate').innerHTML = '$1 = ' + tomoAmount + ' <small>TOMO</small>';
-document.getElementById('version').innerHTML = 'WisePass Dapp v2.2 © 2019 TomoChain.'
+document.getElementById('version').innerHTML = 'WisePass Dapp v2.3 © 2019 TomoChain.'
 var isBuying = false;
 
 function buySuccess() {
@@ -69,34 +69,35 @@ function buyABeer() {
         web3.eth.getTransactionReceipt(hash, function (error, ret) {
           if (ret && !error) {
             clearInterval(intv);
+            buySuccess();
 
-            var xhr = new XMLHttpRequest();
-            var url = "https://apimobile.wisepass.co/v4/tomo/txhash/check";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("api_key", APP_PARAMS.appID);
-            xhr.onreadystatechange = function () {
-              if (xhr.response) {
-                var data = JSON.parse(xhr.response);
-                if (data.statusCode != 200) {
-                  // alert('Error: ' + data.message)
-                  if (data.message == 'Exception') {
-                    buySuccess();
-                  }
-                }
-                else {
-                  buySuccess();
-                }
+            // var xhr = new XMLHttpRequest();
+            // var url = "https://apimobile.wisepass.co/v4/tomo/txhash/check";
+            // xhr.open("POST", url, true);
+            // xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.setRequestHeader("api_key", APP_PARAMS.appID);
+            // xhr.onreadystatechange = function () {
+            //   if (xhr.response) {
+            //     var data = JSON.parse(xhr.response);
+            //     if (data.statusCode != 200) {
+            //       // alert('Error: ' + data.message)
+            //       if (data.message == 'Exception') {
+            //         buySuccess();
+            //       }
+            //     }
+            //     else {
+            //       buySuccess();
+            //     }
 
-                isBuying = false;
-                document.getElementById('buyButton').innerHTML = 'BUY A BEER';
-              }
-            };
-            var data = JSON.stringify({
-              'venueId': APP_PARAMS.venueId,
-              'txhash': hash
-            });
-            xhr.send(data);
+            //     isBuying = false;
+            //     document.getElementById('buyButton').innerHTML = 'BUY A BEER';
+            //   }
+            // };
+            // var data = JSON.stringify({
+            //   'venueId': APP_PARAMS.venueId,
+            //   'txhash': hash
+            // });
+            // xhr.send(data);
           }
         });
       }, 3000);
